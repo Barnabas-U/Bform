@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barnabas form</title>
+    <style>
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        form {
+            padding: 2em;
+            background-color: aquamarine;
+            margin: 5em;
+        }
+
+        fieldset {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        input, select {
+            margin-bottom: 1em;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <form class="form">
+        <fieldset>
+            <legend>Barnabas form</legend>
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name">
+            <label for="email">Email address</label>
+            <input type="email" name="email" id="email" required="">
+            <label for="phone-number">Phone number</label>
+            <input type="tel" name="phone-number" id="phone-number" required="">
+            <label for="gender">Gender</label>
+            <select name="myselect" class="required" id="gender">
+                <option value="" disabled="disabled">Choose an option</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+            <button type="submit">Submit</button>
+        </fieldset>
+    </form>
+    
+    <script>
+        const form = document.querySelector('.form');
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const pNum = document.getElementById('phone-number');
+        const gender = document.getElementById('gender');
+        const password = document.getElementById('password');
+        const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        
+
+        form.addEventListener("submit", function(e) {
+            if (name.value === "") {
+                name.style.border = "2px solid red";
+                e.preventDefault();
+            }
+            
+            if (email.value === "") {
+                email.style.border = "2px solid red";
+                e.preventDefault();
+            }
+
+
+            if (pNum.value === "") {
+                pNum.style.border = "2px solid red";
+                e.preventDefault();
+            }
+
+            if (pNum.value.length < 11 || pNum.value.length > 14) {
+                alert("use valid number");
+                pNum.style.border = "2px solid red";
+                e.preventDefault();
+            }
+
+            if (password.value === "" || password.value.length < 6) {
+                password.style.border = "2px solid red";
+                e.preventDefault();
+            }else {
+                alert("Your form have been submited");
+            }
+
+            
+        });
+    </script>
+    
+</body>
+</html>
